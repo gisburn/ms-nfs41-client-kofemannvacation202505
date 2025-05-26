@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xl="http://www.w3.org/1999/xlink" version="5.1">
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xl="http://www.w3.org/1999/xlink" version="5.1" xml:id="articlemain">
 
   <!--
     DocBook XML: Compile to HTML via
     $ xsltproc -xinclude -o README.html /usr/share/sgml/docbook/xsl-ns-stylesheets/xhtml-1_1/docbook.xsl README.xml #
   -->
 
-  <info>
-    <title>msnfs41client Cygwin binary tarball README</title>
+  <info xml:id="info">
+    <title xml:id="infotitle">msnfs41client Cygwin binary tarball README</title>
     <author>
       <personname><firstname>Roland</firstname> <surname>Mainz</surname></personname>
       <email>roland.mainz@nrubsig.org</email>
