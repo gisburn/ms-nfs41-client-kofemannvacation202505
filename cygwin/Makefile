@@ -225,6 +225,14 @@ $(PROJECT_BASEDIR_DIR)/README.html: $(PROJECT_BASEDIR_DIR)/docs/README.xml
 		/usr/share/sgml/docbook/xsl-ns-stylesheets/xhtml-1_1/docbook.xsl \
 		$(PROJECT_BASEDIR_DIR)/docs/README.xml
 
+# README.md rule is not part of the default build as Cygwin does not have a pandoc package
+$(PROJECT_BASEDIR_DIR)/README.md: $(PROJECT_BASEDIR_DIR)/docs/README.xml
+	pandoc \
+		-f docbook \
+		-t markdown_mmd \
+		-s $(PROJECT_BASEDIR_DIR)/docs/README.xml \
+		-o $(PROJECT_BASEDIR_DIR)/README.md
+
 $(PROJECT_BASEDIR_DIR)/README.txt: $(PROJECT_BASEDIR_DIR)/README.html
 	w3m \
 		-O UTF8 \
