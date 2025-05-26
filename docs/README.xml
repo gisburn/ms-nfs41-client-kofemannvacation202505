@@ -861,6 +861,9 @@ Datei befindet. Versuchen Sie, die Datei woanders zu speichern.</programlisting>
                 <listitem>
                   <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
                 </listitem>
+                <listitem>
+                  <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
+                </listitem>
               </itemizedlist>
             </listitem>
             <listitem>
@@ -878,6 +881,9 @@ Datei befindet. Versuchen Sie, die Datei woanders zu speichern.</programlisting>
                 </listitem>
                 <listitem>
                   <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
+                </listitem>
+                <listitem>
+                  <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
                 </listitem>
               </itemizedlist>
             </listitem>

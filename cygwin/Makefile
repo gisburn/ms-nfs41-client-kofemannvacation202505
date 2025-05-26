@@ -154,7 +154,7 @@ installdest64: \
 # in parallel
 installdest: installdest_util installdest32 .WAIT installdest64
 
-bintarball: installdest $(PROJECT_BASEDIR_DIR)/README.txt
+bintarball: installdest $(PROJECT_BASEDIR_DIR)/README.txt $(PROJECT_BASEDIR_DIR)/README.md
 	set -o errexit ; set -o xtrace ; \
 	base_filename="msnfs41client_cygwin_64bit32bit_binaries_$$(date +%Y%m%d_%Hh%Mm)_git$$(git rev-parse --short HEAD)" ; \
 	( \
@@ -176,7 +176,7 @@ bintarball: installdest $(PROJECT_BASEDIR_DIR)/README.txt
 	ls -l "$(DESTDIR)/$${base_filename}.readme"
 	sync
 
-bintarball32: installdest32 $(PROJECT_BASEDIR_DIR)/README.txt
+bintarball32: installdest32 $(PROJECT_BASEDIR_DIR)/README.txt $(PROJECT_BASEDIR_DIR)/README.md
 	set -o errexit ; set -o xtrace ; \
 	base_filename="msnfs41client_cygwin_32bit_binaries_$$(date +%Y%m%d_%Hh%Mm)_git$$(git rev-parse --short HEAD)" ; \
 	( \
@@ -197,7 +197,7 @@ bintarball32: installdest32 $(PROJECT_BASEDIR_DIR)/README.txt
 	ls -l "$(DESTDIR)/$${base_filename}.readme"
 	sync
 
-bintarball64: installdest64 $(PROJECT_BASEDIR_DIR)/README.txt
+bintarball64: installdest64 $(PROJECT_BASEDIR_DIR)/README.txt $(PROJECT_BASEDIR_DIR)/README.md
 	set -o errexit ; set -o xtrace ; \
 	base_filename="msnfs41client_cygwin_64bit_binaries_$$(date +%Y%m%d_%Hh%Mm)_git$$(git rev-parse --short HEAD)" ; \
 	( \
@@ -230,8 +230,12 @@ $(PROJECT_BASEDIR_DIR)/README.md: $(PROJECT_BASEDIR_DIR)/docs/README.xml
 	pandoc \
 		-f docbook \
 		-t markdown_mmd \
-		-s $(PROJECT_BASEDIR_DIR)/docs/README.xml \
-		-o $(PROJECT_BASEDIR_DIR)/README.md
+		-s "$$(cygpath -w "$(PROJECT_BASEDIR_DIR)/docs/README.xml")" \
+		-o "$$(cygpath -w "$(PROJECT_BASEDIR_DIR)/README.md")"
+	# make sure we always use UNIX line endings
+	dos2unix "$(PROJECT_BASEDIR_DIR)/README.md"
+	# Remove bogus -x flag set by Windows PanDoc
+	chmod a-x "$(PROJECT_BASEDIR_DIR)/README.md"
 
 $(PROJECT_BASEDIR_DIR)/README.txt: $(PROJECT_BASEDIR_DIR)/README.html
 	w3m \
