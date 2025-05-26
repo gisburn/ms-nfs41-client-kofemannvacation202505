@@ -1,6 +1,38 @@
 author: Roland Mainz roland.mainz@nrubsig.org
 title: msnfs41client Cygwin binary tarball README
 
+- [What is this ?](#what-is-this)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Download and install Cygwin (if not installed
+    yet)](#download-install-cygwin)
+  - [Download and install MSYS2/64bit
+    \[OPTIONAL\]](#download-install-msys2)
+  - [Download "ms-nfs41-client" installation
+    tarball](#download-msnfs41client-tarball)
+  - [Installation (as "Administrator")](#installation-via-cygwin)
+  - [Deinstallation](#deinstallation)
+- [Usage](#usage)
+  - [Starting](#starting)
+    - [Run as Windows Service](#run_as_windows_service)
+    - [Manual starting the daemon](#manual_start)
+  - [Mounting and using NFS filesystems](#mounting_and_using)
+    - [Basic usage](#basic_usage)
+    - [Global/System-wide mounts](#global-system-wide-mounts)
+    - [WSL usage](#wsl-usage)
+- [Notes](#notes)
+- [Known issues](#known-issues)
+- [Troubleshooting && finding
+  bugs/debugging](#troubleshooting-debugging)
+- [Development](#development)
+  - [Source code](#source-code)
+  - [Building ms-nfs41-client](#building_msnfs41client)
+    - [Building ms-nfs41-client using
+      Cygwin+Makefile](#building-cygwin-makefile)
+    - [Testing](#testing)
+- [Mailing list](#mailinglist)
+
 # What is this ?
 
 NFSv4.2/NFSv4.1 filesystem driver for Windows 10/11 & Windows Server
