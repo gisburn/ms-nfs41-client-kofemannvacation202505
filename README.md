@@ -14,6 +14,9 @@ title: msnfs41client Cygwin binary tarball README
   - [Installation (as "Administrator")](#installation-via-cygwin)
   - [Deinstallation](#deinstallation)
 - [Usage](#usage)
+  - [Preparing the NFS server](#prep_nfs_server)
+    - [NFS server config](#nfs_server_config)
+    - [User/group accounts on the NFS server](#nfs_server_accounts)
   - [Starting](#starting)
     - [Run as Windows Service](#run_as_windows_service)
     - [Manual starting the daemon](#manual_start)
@@ -472,6 +475,25 @@ Cygwin 32bit can be installed like this:
     <REBOOT>
 
 # Usage
+
+## Preparing the NFS server [prep_nfs_server]
+
+### NFS server config [nfs_server_config]
+
+- Make sure the NFS client can access the NFS server
+
+- The NFS server should send owner and owner_group information as
+  user@domain and group@domain, and not as numeric uid/gid information
+
+### User/group accounts on the NFS server [nfs_server_accounts]
+
+It is required that all Windows users and groups used by the Windows NFS
+client have user/group accounts on the server side.
+
+If no central user&group management between NFS server and NFS clients
+exists the `/sbin/cygwinaccount2nfs4account` script can be used to
+manually create matching `/etc/group` and `/etc/passwd` entries on the
+NFS server side.
 
 ## Starting
 

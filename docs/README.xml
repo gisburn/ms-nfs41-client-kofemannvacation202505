@@ -482,6 +482,30 @@ $ /sbin/msnfs41client install
   <section xml:id="usage">
     <title>Usage</title>
 
+    <section xml:id="prep_nfs_server">
+      <title>Preparing the NFS server</title>
+
+      <section xml:id="nfs_server_config">
+          <title>NFS server config</title>
+          <itemizedlist>
+            <listitem><para>Make sure the NFS client can access the NFS server</para></listitem>
+            <listitem><para>The NFS server should send owner and owner_group information as user@domain and group@domain, and not as numeric uid/gid information</para></listitem>
+          </itemizedlist>
+      </section>
+
+      <section xml:id="nfs_server_accounts">
+          <title>User/group accounts on the NFS server</title>
+          <para>It is required that all Windows users and groups used by the
+          Windows NFS client have user/group accounts on the server
+          side.</para>
+          <para>If no central user&amp;group management between NFS server
+          and NFS clients exists the
+          <filename>/sbin/cygwinaccount2nfs4account</filename> script can be
+          used to manually create matching <filename>/etc/group</filename> and
+          <filename>/etc/passwd</filename> entries on the NFS server side.</para>
+      </section>
+    </section>
+
     <section xml:id="starting">
       <title>Starting</title>
 
