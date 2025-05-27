@@ -1,6 +1,5 @@
 ---
-author: Roland Mainz roland.mainz@nrubsig.org
-title: msnfs41client Cygwin binary tarball README
+title: Windows NFS 4.2 FileSystem Client Instructions
 ---
 
 - [What is this ?](#what-is-this)

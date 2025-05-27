@@ -6,13 +6,7 @@
     $ xsltproc -xinclude -o README.html /usr/share/sgml/docbook/xsl-ns-stylesheets/xhtml-1_1/docbook.xsl README.xml #
   -->
 
-  <info xml:id="info">
-    <title xml:id="infotitle">msnfs41client Cygwin binary tarball README</title>
-    <author>
-      <personname><firstname>Roland</firstname> <surname>Mainz</surname></personname>
-      <email>roland.mainz@nrubsig.org</email>
-    </author>
-  </info>
+  <title xml:id="articletitle">Windows NFS 4.2 FileSystem Client Instructions</title>
 
   <section xml:id="what-is-this">
     <title>What is this ?</title>
