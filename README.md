@@ -1,5 +1,7 @@
+---
 author: Roland Mainz roland.mainz@nrubsig.org
 title: msnfs41client Cygwin binary tarball README
+---
 
 - [What is this ?](#what-is-this)
 - [Features](#features)
@@ -390,7 +392,7 @@ NFSv4.2/NFSv4.1 filesystem driver for Windows 10/11 & Windows Server
 
 # Installation
 
-## Download and install Cygwin (if not installed yet) [download-install-cygwin]
+## Download and install Cygwin (if not installed yet)
 
 Windows 32bit-vs.-64bit can be tested from Windows `cmd.exe` console:
 
@@ -438,7 +440,7 @@ Cygwin 32bit can be installed like this:
 
         setup-x86.exe --allow-unsupported-windows -q --no-verify --site "http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/2022/11/23/063457" -P cygwin,cygwin-devel,cygrunsrv,cygutils,cygutils-extra,bash,bzip2,coreutils,getent,gdb,grep,hostname,less,libiconv,libiconv2,pax,pbzip2,procps-ng,sed,tar,time,util-linux,wget,libnfs-utils,make,bmake,git,dos2unix,unzip
 
-## Download and install MSYS2/64bit \[OPTIONAL\] [download-install-msys2]
+## Download and install MSYS2/64bit \[OPTIONAL\]
 
 1.  Download & install from Cygwin
 
@@ -453,7 +455,7 @@ Cygwin 32bit can be installed like this:
 
         pacman -S --noconfirm base-devel gcc clang sed time coreutils util-linux grep sed emacs gdb make autoconf automake gettext gettext-devel git subversion flex bison unzip pax tar libiconv-devel ncurses-devel gmp-devel mpfr-devel mpc-devel isl-devel procps-ng libiconv-devel
 
-## Download "ms-nfs41-client" installation tarball [download-msnfs41client-tarball]
+## Download "ms-nfs41-client" installation tarball
 
 (from a Cygwin terminal)
 
@@ -463,7 +465,7 @@ Cygwin 32bit can be installed like this:
     $ openssl sha256 "${bintarball.base_filename}.tar.bz2"
     SHA2-256(${bintarball.base_filename}.tar.bz2)= ${bintarball.archive_sha256hash}
 
-## Installation (as "Administrator") [installation-via-cygwin]
+## Installation (as "Administrator")
 
     $ (cd / && tar -xf ~/download/${bintarball.base_filename}.tar.bz2 )
     $ /sbin/msnfs41client install
@@ -476,16 +478,16 @@ Cygwin 32bit can be installed like this:
 
 # Usage
 
-## Preparing the NFS server [prep_nfs_server]
+## Preparing the NFS server
 
-### NFS server config [nfs_server_config]
+### NFS server config
 
 - Make sure the NFS client can access the NFS server
 
 - The NFS server should send owner and owner_group information as
   user@domain and group@domain, and not as numeric uid/gid information
 
-### User/group accounts on the NFS server [nfs_server_accounts]
+### User/group accounts on the NFS server
 
 It is required that all Windows users and groups used by the Windows NFS
 client have user/group accounts on the server side.
@@ -497,7 +499,7 @@ NFS server side.
 
 ## Starting
 
-### Run as Windows Service [run_as_windows_service]
+### Run as Windows Service
 
 - Start NFSv4 client daemon as Windows service (requires "Administrator"
   account):
@@ -551,7 +553,7 @@ NFS server side.
 
         $ sc config ms-nfs41-client-service start=disabled
 
-### Manual starting the daemon [manual_start]
+### Manual starting the daemon
 
 Run the NFSv4 client daemon manually:
 
@@ -563,9 +565,9 @@ Run the NFSv4 client daemon manually:
 
     $ /sbin/msnfs41client run_daemon
 
-## Mounting and using NFS filesystems [mounting_and_using]
+## Mounting and using NFS filesystems
 
-### Basic usage [basic_usage]
+### Basic usage
 
 Mount a filesystem to drive N: and use it
 
@@ -613,7 +615,7 @@ List mounted NFSv4.2 filesystems:
 
     $ /sbin/nfs_mount
 
-### Global/System-wide mounts [global-system-wide-mounts]
+### Global/System-wide mounts
 
 Mounts created by user "SYSTEM" are usable by all users in a system.
 Example usage:
@@ -838,7 +840,7 @@ Within WSL mount UNC path returned by `/sbin/nfs_mount`
       Dieser Fehler wurde von dem Server zurueckgegeben, auf dem sich die
       Datei befindet. Versuchen Sie, die Datei woanders zu speichern.
 
-# Troubleshooting && finding bugs/debugging [troubleshooting-debugging]
+# Troubleshooting && finding bugs/debugging
 
 - `nfsd_debug.exe` has the `-d` option to set a level for debug output.
   Edit `/sbin/msnfs41client` to set the `"-d"` option.
@@ -880,11 +882,11 @@ Source code can be obtained from
 <https://github.com/kofemann/ms-nfs41-client> or as git bundle from
 `/usr/src/msnfs41client/msnfs41client_git.bundle`
 
-## Building ms-nfs41-client [building_msnfs41client]
+## Building ms-nfs41-client
 
-### Building ms-nfs41-client using Cygwin+Makefile [building-cygwin-makefile]
+### Building ms-nfs41-client using Cygwin+Makefile
 
-#### Required Software [required-software-makefile]
+#### Required Software
 
 - **Option 1:** Windows 10 with Visual Studio 2019
 
@@ -892,17 +894,10 @@ Source code can be obtained from
     file `ms-nfs41-client/build.vc19/ms-nfs41-client_vs2019.vsconfig`,
     and then install Visual Studio.
 
-    <div class="note" markdown="1">
-
-    <div class="title" markdown="1">
-
-    </div>
-
-    Due to a bug in the VS installer, it is sometimes required to
-    manually add another (random) component to be installed; otherwise,
-    the imported config might be ignored.
-
-    </div>
+    > [!NOTE]
+    > Due to a bug in the VS installer, it is sometimes required to
+    > manually add another (random) component to be installed;
+    > otherwise, the imported config might be ignored.
 
   - WDK for Windows 10, version 2004, from
     <https://go.microsoft.com/fwlink/?linkid=2128854>
@@ -920,17 +915,10 @@ Source code can be obtained from
     file `ms-nfs41-client/build.vc19/ms-nfs41-client_vs2022.vsconfig`,
     and then install Visual Studio.
 
-    <div class="note" markdown="1">
-
-    <div class="title" markdown="1">
-
-    </div>
-
-    Due to a bug in the VS installer, it is sometimes required to
-    manually add another (random) component to be installed; otherwise,
-    the imported config might be ignored.
-
-    </div>
+    > [!NOTE]
+    > Due to a bug in the VS installer, it is sometimes required to
+    > manually add another (random) component to be installed;
+    > otherwise, the imported config might be ignored.
 
   - WDK for Windows 11, version 1591, from
     <https://go.microsoft.com/fwlink/?linkid=2286137>
@@ -942,7 +930,7 @@ Source code can be obtained from
   - PanDoc document converter, from
     <https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi>
 
-#### Build the Project [build-project-makefile]
+#### Build the Project
 
 - **Using Visual Studio 2019+Cygwin command line (bash/ksh93):**
 
@@ -969,30 +957,23 @@ Source code can be obtained from
       make installdest64
       make bintarball64
 
-<div class="note" markdown="1">
-
-<div class="title" markdown="1">
-
-</div>
-
-`make installdest` or `make installdest64` can fail on SMB/NFSv4.1
-filesystems with a "link.exe" crash. The workaround is to disable
-incremental linking before building, e.g., do:
-
-    cd ms-nfs41-client
-    sed -i -E 's/<LinkIncremental>true<\/LinkIncremental>/<LinkIncremental>false<\/LinkIncremental>/g' $(find build.vc19 -name \*.vcxproj)
-
-This Visual Studio bug is tracked as
-<https://developercommunity.visualstudio.com/t/Visual-Studio-link.exe-crashes-on-networ/10735424>
-("Visual Studio link.exe crashes on network filesystem").
-
-</div>
+> [!NOTE]
+> `make installdest` or `make installdest64` can fail on SMB/NFSv4.1
+> filesystems with a "link.exe" crash. The workaround is to disable
+> incremental linking before building, e.g., do:
+>
+>     cd ms-nfs41-client
+>     sed -i -E 's/<LinkIncremental>true<\/LinkIncremental>/<LinkIncremental>false<\/LinkIncremental>/g' $(find build.vc19 -name \*.vcxproj)
+>
+> This Visual Studio bug is tracked as
+> <https://developercommunity.visualstudio.com/t/Visual-Studio-link.exe-crashes-on-networ/10735424>
+> ("Visual Studio link.exe crashes on network filesystem").
 
 ### Testing
 
 See `tests/manual_testing.txt`
 
-# Mailing list [mailinglist]
+# Mailing list
 
 Please direct any questions to
 <ms-nfs41-client-devel@lists.sourceforge.net> (list
