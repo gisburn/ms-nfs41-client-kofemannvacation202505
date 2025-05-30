@@ -480,28 +480,28 @@ $ /sbin/msnfs41client install
       <title>Preparing the NFS server</title>
 
       <section xml:id="nfs_server_config">
-          <title>NFS server config</title>
-          <itemizedlist>
-            <listitem><para>Make sure the NFS client can access the NFS server</para></listitem>
-            <listitem><para>The NFS server should send owner and owner_group information as user@domain and group@domain, and not as numeric uid/gid information</para></listitem>
-          </itemizedlist>
+        <title>NFS server config</title>
+        <itemizedlist>
+          <listitem><para>Make sure the NFS client can access the NFS server</para></listitem>
+          <listitem><para>The NFS server should send owner and owner_group information as user@domain and group@domain, and not as numeric uid/gid information</para></listitem>
+        </itemizedlist>
       </section>
 
       <section xml:id="nfs_server_accounts">
-          <title>User/group accounts on the NFS server</title>
-          <para>It is required that all Windows users and groups used by the
-          Windows NFS client have user/group accounts on the server
-          side.</para>
-          <para>If no central user&amp;group management between NFS server
-          and NFS clients exists the
-          <filename>/sbin/cygwinaccount2nfs4account</filename> script can be
-          used to manually create matching <filename>/etc/group</filename> and
-          <filename>/etc/passwd</filename> entries on the NFS server side.</para>
+        <title>User/group accounts on the NFS server</title>
+        <para>It is required that all Windows users and groups used by the
+        Windows NFS client have user/group accounts on the server
+        side.</para>
+        <para>If no central user&amp;group management between NFS server
+        and NFS clients exists the
+        <filename>/sbin/cygwinaccount2nfs4account</filename> script can be
+        used to manually create matching <filename>/etc/group</filename> and
+        <filename>/etc/passwd</filename> entries on the NFS server side.</para>
       </section>
     </section>
 
-    <section xml:id="starting">
-      <title>Starting</title>
+    <section xml:id="starting_nfs_daemon">
+      <title>Starting the NFS client daemon</title>
 
       <section xml:id="run_as_windows_service">
         <title>Run as Windows Service</title>
@@ -858,62 +858,62 @@ Datei befindet. Versuchen Sie, die Datei woanders zu speichern.</programlisting>
     <title>Building ms-nfs41-client</title>
 
     <section xml:id="building-cygwin-makefile">
-        <title>Building ms-nfs41-client using Cygwin+Makefile</title>
+      <title>Building ms-nfs41-client using Cygwin+Makefile</title>
 
-        <section xml:id="required-software-makefile">
-          <title>Required Software</title>
-          <itemizedlist>
-            <listitem>
-              <para><emphasis role="bold">Option 1:</emphasis> Windows 10 with Visual Studio 2019</para>
-              <itemizedlist>
-                <listitem>
-                  <para>Start Visual Studio 2019 installer and import the installer config file
-                  <filename>ms-nfs41-client/build.vc19/ms-nfs41-client_vs2019.vsconfig</filename>, and then install Visual Studio.</para>
-                  <note>
-                    <para>Due to a bug in the VS installer, it is sometimes required to manually add another (random) component to be installed; otherwise, the imported config might be ignored.</para>
-                  </note>
-                </listitem>
-                <listitem>
-                  <para>WDK for Windows 10, version 2004, from <link xl:href="https://go.microsoft.com/fwlink/?linkid=2128854">https://go.microsoft.com/fwlink/?linkid=2128854</link></para>
-                </listitem>
-                <listitem>
-                  <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
-                </listitem>
-                <listitem>
-                  <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Option 2:</emphasis> Windows 10/11 with Visual Studio 2022</para>
-              <itemizedlist>
-                <listitem>
-                  <para>Start Visual Studio 2022 installer and import the installer config file
-                  <filename>ms-nfs41-client/build.vc19/ms-nfs41-client_vs2022.vsconfig</filename>, and then install Visual Studio.</para>
-                  <note>
-                    <para>Due to a bug in the VS installer, it is sometimes required to manually add another (random) component to be installed; otherwise, the imported config might be ignored.</para>
-                  </note>
-                </listitem>
-                <listitem>
-                  <para>WDK for Windows 11, version 1591, from <link xl:href="https://go.microsoft.com/fwlink/?linkid=2286137">https://go.microsoft.com/fwlink/?linkid=2286137</link></para>
-                </listitem>
-                <listitem>
-                  <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
-                </listitem>
-                <listitem>
-                  <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
-        </section>
+      <section xml:id="required-software-makefile">
+        <title>Required Software</title>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Option 1:</emphasis> Windows 10 with Visual Studio 2019</para>
+            <itemizedlist>
+              <listitem>
+                <para>Start Visual Studio 2019 installer and import the installer config file
+                <filename>ms-nfs41-client/build.vc19/ms-nfs41-client_vs2019.vsconfig</filename>, and then install Visual Studio.</para>
+                <note>
+                  <para>Due to a bug in the VS installer, it is sometimes required to manually add another (random) component to be installed; otherwise, the imported config might be ignored.</para>
+                </note>
+              </listitem>
+              <listitem>
+                <para>WDK for Windows 10, version 2004, from <link xl:href="https://go.microsoft.com/fwlink/?linkid=2128854">https://go.microsoft.com/fwlink/?linkid=2128854</link></para>
+              </listitem>
+              <listitem>
+                <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
+              </listitem>
+              <listitem>
+                <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Option 2:</emphasis> Windows 10/11 with Visual Studio 2022</para>
+            <itemizedlist>
+              <listitem>
+                <para>Start Visual Studio 2022 installer and import the installer config file
+                <filename>ms-nfs41-client/build.vc19/ms-nfs41-client_vs2022.vsconfig</filename>, and then install Visual Studio.</para>
+                <note>
+                  <para>Due to a bug in the VS installer, it is sometimes required to manually add another (random) component to be installed; otherwise, the imported config might be ignored.</para>
+                </note>
+              </listitem>
+              <listitem>
+                <para>WDK for Windows 11, version 1591, from <link xl:href="https://go.microsoft.com/fwlink/?linkid=2286137">https://go.microsoft.com/fwlink/?linkid=2286137</link></para>
+              </listitem>
+              <listitem>
+                <para>Cygwin 64bit &gt;= 3.5.0 (see <filename>ms-nfs41-clientcygwin/README.bintarball.txt</filename> for Cygwin 32bit and 64bit installation instructions)</para>
+              </listitem>
+              <listitem>
+                <para>PanDoc document converter, from <link xl:href="https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi">https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi</link></para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
 
-        <section xml:id="build-project-makefile">
-          <title>Build the Project</title>
-          <itemizedlist>
-            <listitem>
-              <para><emphasis role="bold">Using Visual Studio 2019+Cygwin command line (bash/ksh93):</emphasis></para>
-              <programlisting># this creates a 32bit+kernel+64bit-kernel build for Windows 10+11
+      <section xml:id="build-project-makefile">
+        <title>Build the Project</title>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Using Visual Studio 2019+Cygwin command line (bash/ksh93):</emphasis></para>
+            <programlisting># this creates a 32bit+kernel+64bit-kernel build for Windows 10+11
 export PATH="/cygdrive/c/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/:$PATH"
 git clone https://github.com/kofemann/ms-nfs41-client.git
 cd ms-nfs41-client
@@ -921,10 +921,10 @@ cd cygwin
 make build
 make installdest
 make bintarball</programlisting>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Using Visual Studio 2022+Cygwin command line (bash/ksh93):</emphasis></para>
-              <programlisting># this creates a 64bit-kernel only build for Windows 11
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Using Visual Studio 2022+Cygwin command line (bash/ksh93):</emphasis></para>
+            <programlisting># this creates a 64bit-kernel only build for Windows 11
 export PATH="/cygdrive/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/:$PATH"
 git clone https://github.com/kofemann/ms-nfs41-client.git
 cd ms-nfs41-client
@@ -935,16 +935,15 @@ cd cygwin
 make build64
 make installdest64
 make bintarball64</programlisting>
-            </listitem>
-          </itemizedlist>
-          <note>
-            <para><command>make installdest</command> or <command>make installdest64</command> can fail on SMB/NFSv4.1 filesystems with a "link.exe" crash. The workaround is to disable incremental linking before building, e.g., do:</para>
-            <programlisting>cd ms-nfs41-client
+          </listitem>
+        </itemizedlist>
+        <note>
+          <para><command>make installdest</command> or <command>make installdest64</command> can fail on SMB/NFSv4.1 filesystems with a "link.exe" crash. The workaround is to disable incremental linking before building, e.g., do:</para>
+          <programlisting>cd ms-nfs41-client
 sed -i -E 's/&lt;LinkIncremental&gt;true&lt;\/LinkIncremental&gt;/&lt;LinkIncremental&gt;false&lt;\/LinkIncremental&gt;/g' $(find build.vc19 -name \*.vcxproj)</programlisting>
             <para>This Visual Studio bug is tracked as <link xl:href="https://developercommunity.visualstudio.com/t/Visual-Studio-link.exe-crashes-on-networ/10735424">https://developercommunity.visualstudio.com/t/Visual-Studio-link.exe-crashes-on-networ/10735424</link> ("Visual Studio link.exe crashes on network filesystem").</para>
           </note>
         </section>
-
       </section>
 
       <section xml:id="testing">

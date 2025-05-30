@@ -18,7 +18,7 @@ title: Windows NFS 4.2 FileSystem Client Instructions
   - [Preparing the NFS server](#prep_nfs_server)
     - [NFS server config](#nfs_server_config)
     - [User/group accounts on the NFS server](#nfs_server_accounts)
-  - [Starting](#starting)
+  - [Starting the NFS client daemon](#starting_nfs_daemon)
     - [Run as Windows Service](#run_as_windows_service)
     - [Manual starting the daemon](#manual_start)
   - [Mounting and using NFS filesystems](#mounting_and_using)
@@ -496,7 +496,7 @@ exists the `/sbin/cygwinaccount2nfs4account` script can be used to
 manually create matching `/etc/group` and `/etc/passwd` entries on the
 NFS server side.
 
-## Starting
+## Starting the NFS client daemon
 
 ### Run as Windows Service
 
