@@ -2,49 +2,42 @@
 title: Windows NFS 4.2 FileSystem Client Instructions
 ---
 
-- [What is this ?](#what-is-this){#toc-what-is-this}
-- [Features](#features){#toc-features}
-- [Requirements](#requirements){#toc-requirements}
-- [Installation](#installation){#toc-installation}
+- [What is this ?](#what-is-this)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
   - [Download and install Cygwin (if not installed
-    yet)](#download-install-cygwin){#toc-download-install-cygwin}
+    yet)](#download-install-cygwin)
   - [Download and install MSYS2/64bit
-    \[OPTIONAL\]](#download-install-msys2){#toc-download-install-msys2}
+    \[OPTIONAL\]](#download-install-msys2)
   - [Download "ms-nfs41-client" installation
-    tarball](#download-msnfs41client-tarball){#toc-download-msnfs41client-tarball}
-  - [Installation (as
-    "Administrator")](#installation-via-cygwin){#toc-installation-via-cygwin}
-  - [Deinstallation](#deinstallation){#toc-deinstallation}
-- [Usage](#usage){#toc-usage}
-  - [Preparing the NFS server](#prep_nfs_server){#toc-prep_nfs_server}
-    - [NFS server config](#nfs_server_config){#toc-nfs_server_config}
-    - [User/group accounts on the NFS
-      server](#nfs_server_accounts){#toc-nfs_server_accounts}
-  - [Starting the NFS client
-    daemon](#starting_nfs_daemon){#toc-starting_nfs_daemon}
-    - [Run as Windows
-      Service](#run_as_windows_service){#toc-run_as_windows_service}
-    - [Manual starting the daemon](#manual_start){#toc-manual_start}
-  - [Mounting and using NFS
-    filesystems](#mounting_and_using){#toc-mounting_and_using}
-    - [Basic usage](#basic_usage){#toc-basic_usage}
-    - [Global/System-wide
-      mounts](#global-system-wide-mounts){#toc-global-system-wide-mounts}
-    - [WSL usage](#wsl-usage){#toc-wsl-usage}
-- [Notes](#notes){#toc-notes}
-- [Known issues](#known-issues){#toc-known-issues}
+    tarball](#download-msnfs41client-tarball)
+  - [Installation (as "Administrator")](#installation-via-cygwin)
+  - [Deinstallation](#deinstallation)
+- [Usage](#usage)
+  - [Preparing the NFS server](#prep_nfs_server)
+    - [NFS server config](#nfs_server_config)
+    - [User/group accounts on the NFS server](#nfs_server_accounts)
+  - [Starting the NFS client daemon](#starting_nfs_daemon)
+    - [Run as Windows Service](#run_as_windows_service)
+    - [Manual starting the daemon](#manual_start)
+  - [Mounting and using NFS filesystems](#mounting_and_using)
+    - [Basic usage](#basic_usage)
+    - [Global/System-wide mounts](#global-system-wide-mounts)
+    - [WSL usage](#wsl-usage)
+- [Notes](#notes)
+- [Known issues](#known-issues)
 - [Troubleshooting && finding
-  bugs/debugging](#troubleshooting-debugging){#toc-troubleshooting-debugging}
-- [Development](#development){#toc-development}
-  - [Source code](#source-code){#toc-source-code}
-  - [Building
-    ms-nfs41-client](#building_msnfs41client){#toc-building_msnfs41client}
+  bugs/debugging](#troubleshooting-debugging)
+- [Development](#development)
+  - [Source code](#source-code)
+  - [Building ms-nfs41-client](#building_msnfs41client)
     - [Building ms-nfs41-client using
-      Cygwin+Makefile](#building-cygwin-makefile){#toc-building-cygwin-makefile}
-    - [Testing](#testing){#toc-testing}
-- [Mailing list](#mailinglist){#toc-mailinglist}
+      Cygwin+Makefile](#building-cygwin-makefile)
+    - [Testing](#testing)
+- [Mailing list](#mailinglist)
 
-# What is this ? {#what-is-this}
+# What is this ?
 
 NFSv4.2/NFSv4.1 filesystem driver for Windows 10/11 & Windows Server
 2019+2022
@@ -398,7 +391,7 @@ NFSv4.2/NFSv4.1 filesystem driver for Windows 10/11 & Windows Server
 
 # Installation
 
-## Download and install Cygwin (if not installed yet) {#download-install-cygwin}
+## Download and install Cygwin (if not installed yet)
 
 Windows 32bit-vs.-64bit can be tested from Windows `cmd.exe` console:
 
@@ -446,7 +439,7 @@ Cygwin 32bit can be installed like this:
 
         setup-x86.exe --allow-unsupported-windows -q --no-verify --site "http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/2022/11/23/063457" -P cygwin,cygwin-devel,cygrunsrv,cygutils,cygutils-extra,bash,bzip2,coreutils,getent,gdb,grep,hostname,less,libiconv,libiconv2,pax,pbzip2,procps-ng,sed,tar,time,util-linux,wget,libnfs-utils,make,bmake,git,dos2unix,unzip
 
-## Download and install MSYS2/64bit \[OPTIONAL\] {#download-install-msys2}
+## Download and install MSYS2/64bit \[OPTIONAL\]
 
 1.  Download & install from Cygwin
 
@@ -461,7 +454,7 @@ Cygwin 32bit can be installed like this:
 
         pacman -S --noconfirm base-devel gcc clang sed time coreutils util-linux grep sed emacs gdb make autoconf automake gettext gettext-devel git subversion flex bison unzip pax tar libiconv-devel ncurses-devel gmp-devel mpfr-devel mpc-devel isl-devel procps-ng libiconv-devel
 
-## Download "ms-nfs41-client" installation tarball {#download-msnfs41client-tarball}
+## Download "ms-nfs41-client" installation tarball
 
 (from a Cygwin terminal)
 
@@ -471,7 +464,7 @@ Cygwin 32bit can be installed like this:
     $ openssl sha256 "${bintarball.base_filename}.tar.bz2"
     SHA2-256(${bintarball.base_filename}.tar.bz2)= ${bintarball.archive_sha256hash}
 
-## Installation (as "Administrator") {#installation-via-cygwin}
+## Installation (as "Administrator")
 
     $ (cd / && tar -xf ~/download/${bintarball.base_filename}.tar.bz2 )
     $ /sbin/msnfs41client install
@@ -484,16 +477,16 @@ Cygwin 32bit can be installed like this:
 
 # Usage
 
-## Preparing the NFS server {#prep_nfs_server}
+## Preparing the NFS server
 
-### NFS server config {#nfs_server_config}
+### NFS server config
 
 - Make sure the NFS client can access the NFS server
 
 - The NFS server should send owner and owner_group information as
   user@domain and group@domain, and not as numeric uid/gid information
 
-### User/group accounts on the NFS server {#nfs_server_accounts}
+### User/group accounts on the NFS server
 
 It is required that all Windows users and groups used by the Windows NFS
 client have user/group accounts on the server side.
@@ -503,9 +496,9 @@ exists the `/sbin/cygwinaccount2nfs4account` script can be used to
 manually create matching `/etc/group` and `/etc/passwd` entries on the
 NFS server side.
 
-## Starting the NFS client daemon {#starting_nfs_daemon}
+## Starting the NFS client daemon
 
-### Run as Windows Service {#run_as_windows_service}
+### Run as Windows Service
 
 - Start NFSv4 client daemon as Windows service (requires "Administrator"
   account):
@@ -559,7 +552,7 @@ NFS server side.
 
         $ sc config ms-nfs41-client-service start=disabled
 
-### Manual starting the daemon {#manual_start}
+### Manual starting the daemon
 
 Run the NFSv4 client daemon manually:
 
@@ -571,9 +564,9 @@ Run the NFSv4 client daemon manually:
 
     $ /sbin/msnfs41client run_daemon
 
-## Mounting and using NFS filesystems {#mounting_and_using}
+## Mounting and using NFS filesystems
 
-### Basic usage {#basic_usage}
+### Basic usage
 
 Mount a filesystem to drive N: and use it
 
@@ -621,7 +614,7 @@ List mounted NFSv4.2 filesystems:
 
     $ /sbin/nfs_mount
 
-### Global/System-wide mounts {#global-system-wide-mounts}
+### Global/System-wide mounts
 
 Mounts created by user "SYSTEM" are usable by all users in a system.
 Example usage:
@@ -846,7 +839,7 @@ Within WSL mount UNC path returned by `/sbin/nfs_mount`
       Dieser Fehler wurde von dem Server zurueckgegeben, auf dem sich die
       Datei befindet. Versuchen Sie, die Datei woanders zu speichern.
 
-# Troubleshooting && finding bugs/debugging {#troubleshooting-debugging}
+# Troubleshooting && finding bugs/debugging
 
 - `nfsd_debug.exe` has the `-d` option to set a level for debug output.
   Edit `/sbin/msnfs41client` to set the `"-d"` option.
@@ -888,11 +881,11 @@ Source code can be obtained from
 <https://github.com/kofemann/ms-nfs41-client> or as git bundle from
 `/usr/src/msnfs41client/msnfs41client_git.bundle`
 
-## Building ms-nfs41-client {#building_msnfs41client}
+## Building ms-nfs41-client
 
-### Building ms-nfs41-client using Cygwin+Makefile {#building-cygwin-makefile}
+### Building ms-nfs41-client using Cygwin+Makefile
 
-#### Required Software {#required-software-makefile}
+#### Required Software
 
 - **Option 1:** Windows 10 with Visual Studio 2019
 
@@ -936,7 +929,7 @@ Source code can be obtained from
   - PanDoc document converter, from
     <https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-windows-x86_64.msi>
 
-#### Build the Project {#build-project-makefile}
+#### Build the Project
 
 - **Using Visual Studio 2019+Cygwin command line (bash/ksh93):**
 
@@ -979,7 +972,7 @@ Source code can be obtained from
 
 See `tests/manual_testing.txt`
 
-# Mailing list {#mailinglist}
+# Mailing list
 
 Please direct any questions to
 <ms-nfs41-client-devel@lists.sourceforge.net> (list
