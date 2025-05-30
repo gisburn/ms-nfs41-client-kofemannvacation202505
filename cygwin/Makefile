@@ -229,7 +229,7 @@ $(PROJECT_BASEDIR_DIR)/README.html: $(PROJECT_BASEDIR_DIR)/docs/README.xml
 $(PROJECT_BASEDIR_DIR)/README.md: $(PROJECT_BASEDIR_DIR)/docs/README.xml
 	pandoc \
 		-f docbook \
-		-t gfm \
+		-t gfm+attributes \
 		--table-of-contents=true \
 		-s "$$(cygpath -w "$(PROJECT_BASEDIR_DIR)/docs/README.xml")" \
 		-o "$$(cygpath -w "$(PROJECT_BASEDIR_DIR)/README.md")"
